@@ -1,12 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Все мои тесты!</h1>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 class='mt-3'>Все мои тесты!</h1>
+    <div class="tests px-5 row justify-content-between my-5">
+
+
+    <p>dict: {{dict}}</p>
+    <p>ids: {{ids}}</p>
+        {% for id in ids %}
+            
+            {% if dict[id] %}
+            
+
+                    <div class="col-9 col-md-5 test bg-light mb-4">
+                        <div class="test-container py-2 px-2">
+                            <h5 class="my-2">{{ json.loads(dict[id][0].data)['title'] }}</h3>
+            
+                                <ul>
+                                    <li>Прошло человек: {{dict[id]|length }} </li>
+                                    <li>Дата создания:
+                                        {{ dict[id][0].date }}
+                                    </li>
+                                    
+                                </ul>
+            
+                            <div class="accordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true">
+                                        Просмотреть
+                                      </button>
+                                    </h2>
+                                    <div class="accordion-collapse collapse show" data-bs-parent="#accordion">
+                                      <div class="accordion-body">
+                                        {% for n in range(0, dict[id] | length)  %}
+                                            <b>{{json.loads(dict[id][n].data)['name']}}: </b>{{json.loads(dict[id][n].data)['points']}}/{{json.loads(dict[id][n].data)['total']}}<br />
+                                        {% endfor %}
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                        </div>
+                    </div>
+
+                
+            {% endif %}
+        {% endfor %}
+        
+    </div>
+
+   
+    <script>
+
+        let accordions = Array.from(document.querySelectorAll(".accordion"))
+
+        if(accordions) {
+            i = 0
+            accordions.map(element => {
+                i++
+                element.setAttribute('id', `accordion-${i}`)
+                let div = element.querySelector('.accordion-collapse ')
+                div.dataset.bsParent = `#accordion-${i}`
+                div.setAttribute("aria-labelledby", `heading-${i}`)
+                div.setAttribute("id", `collapse-${i}`)
+
+
+                element.querySelector('.accordion-header').setAttribute('id', `heading-${i}`)
+                let btn = element.querySelector('.accordion-button')
+                btn.dataset.bsTarget = `#collapse-${i}`
+                btn.setAttribute("aria-controls", `collapse-${i}`)
+
+
+                
+
+            })
+        }
+
+    </script>
+    
+    
+
+
+{% endblock %}
+

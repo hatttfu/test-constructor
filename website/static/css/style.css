@@ -142,3 +142,50 @@ textarea {
         width: 75%
     }
 }
+
+
+/* send */
+
+#send-link {
+    background-color: #1e90ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.link, .link a {
+    font-size: 36px;
+    text-align: center;
+    z-index: 10000000;
+    color: #000;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (min-width: 800px) {
+    .container {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.test:hover {
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+}
+
+.see-all {
+    background-color: #c7ecee;
+}
+
+.wrong-selected {
+    border: red solid .1rem;
+}

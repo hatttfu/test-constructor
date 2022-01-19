@@ -1,34 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создай свой тест</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-</head>
-<body id="body">
-    <div class="container">
-        <div class="instructions">
-            <div class="headline">Конструктор теста</div>
-        </div>
-        <form method="post">
-            <div class="input-group d-inline-flex flex-column align-items-center mb-3">
-                <p class="info mt-3">Привет, Зарина!</p>
-            </div>
-            <div class="add-button">
-                <button type="submit" name="submit" value="test" class="btn">Создать новый тест</button>
-            </div>
-            <div class="add-button mt-5">
-                <button type="submit" name="submit" value="list" class="btn">Мои прошлые тесты</button>
-            </div>
-        </form>
-        <div class="rotating-container mt-5">
-            <img id="rotating" src="../static/img/rotating.jpg" alt="">
-        </div>
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="instructions">
+        <div class="headline">Конструктор теста</div>
     </div>
-    <script src="card.js"></script>
-</body>
-</html>
+    <form method="post">
+        <div class="input-group d-inline-flex flex-column align-items-center mb-3">
+            <p class="info mt-3">Привет, {{ user.name }}!</p>
+        </div>
+        <div class="add-button">
+            <button type="submit" name="submit" value="test" class="btn">Создать новый тест</button>
+        </div>
+        <div class="add-button mt-5">
+            <button type="submit" name="submit" value="list" class="btn">Мои прошлые тесты</button>
+        </div>
+    </form>
+    <div class="rotating-container mt-5">
+        <img id="rotating" src="../static/img/rotating.jpg" alt="">
+    </div> 
+{% endblock %}
+
+
+        
+
+        

@@ -1,50 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создай свой тест</title>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-</head>
-<body id="body">
-    <div class="container">
-        <div class="instructions">
-            <div class="headline">Тестовый</div>
-            <div class="info">Введите вопросы и ответы, отметьте правильный</div>
-        </div>
-        <form method="post">
-            <div class="entry">
-                <div class="cards">
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- {% for test in user.tests %}
+    {% if test.data %}
+        <p>{{ test.data }}</p>
+    {% endif %}
+{% endfor %} -->
+<div class="instructions">
+        <div class="headline">Создание теста</div>
+        <div class="info">Введите вопросы и ответы, отметьте правильный</div>
+</div>
+    <form class="form" method="post">
+        <div class="entry">
+            <div class="test-name-container">
+                <input type="text" class="form-control test-name mb-3" placeholder="Введите название теста здесь">
+            </div>
+            <div class="cards">
+                <div class="card-container">
                     <div class="label">Вопрос 1</div>
                     <div class="card">
-                        <textarea class="form-control" rows="3" maxlength="160" minlength="3" placeholder="Введите свой вопрос">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis necessitatibus ipsa voluptatum blanditiis facere laboriosam tempore nemo?</textarea>
+                        <textarea 
+                        id="question"
+                        class="form-control question" 
+                        rows="3" 
+                        maxlength="160" 
+                        minlength="3" placeholder="Введите свой вопрос"></textarea>
                         <div class="small">
                             <div class="length">44/160</div>
-        
+
                         </div>
-        
+
                         <div class="answers">
                             <div class="answers-container">
                                 <div class="answer">
                                     <div class="toggle"><i class="far fa-circle"></i></div>
-                                    <textarea class="textarea form-control" rows="3" maxlength="160" minlength="3" placeholder="Вариант ответа"></textarea>
+                                    <textarea 
+                                    class="textarea form-control answer-text" rows="3" maxlength="160" minlength="3" placeholder="Вариант ответа"></textarea>
                                     <div class="delete"><i class="fas fa-minus-circle"></i></div>
                                 </div>
                                 <div class="answer">
                                     <div class="toggle"><i class="far fa-circle"></i></div>
-                                    <textarea class="textarea form-control" rows="3" maxlength="160" minlength="3" placeholder="Вариант ответа"></textarea>
+                                    <textarea class="textarea answer-text form-control" rows="3" maxlength="160" minlength="3" placeholder="Вариант ответа"></textarea>
                                     <div class="delete"><i class="fas fa-minus-circle"></i></div>
                                 </div>
                                 <div class="answer">
                                     <div class="toggle"><i class="far fa-circle"></i></div>
-                                    <textarea class="textarea form-control" rows="3" maxlength="160" minlength="3" placeholder="Вариант ответа"></textarea>
+                                    <textarea class="textarea  answer-text form-control" rows="3" maxlength="160" minlength="3" placeholder="Вариант ответа"></textarea>
                                     <div class="delete"><i class="fas fa-minus-circle"></i></div>
                                 </div>
                             </div>
-        
+
                             <div class="add-button">
                                 <button type="button" class="btn add-answer">Добавить ответ
                                 </button>
@@ -53,15 +59,43 @@
                     </div>
                 </div>
             </div>
-            <div class="add-button">
-                <button type="button" class="btn add-card">Добавить вопрос</button>
+        </div>
+        <div class="add-button">
+            <button type="button" class="btn add-card">Добавить вопрос</button>
+        </div>
+        <div class="mt-5 send-div">
+            <i class="far fa-paper-plane"></i>
+            <button type="submit" id="send-button" class="btn btn-primary" >Отправить друзьям!</button>
+        </div>
+    </form>
+
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal">КотеноК!</h5>
             </div>
-            <div class="mt-5 send-div">
-                <i class="far fa-paper-plane"></i>
-                <button type="submit" id="send-button" class="btn btn-primary">Отправить друзьям!</button>
+            <div class="modal-body">
+              Все поля должны быть заполнены! Правильные ответы должны быть отмечены!
             </div>
-        </form>
+          </div>
+        </div>
+      </div>
+
+    <div class="link hidden">
+
     </div>
-    <script src="../static/js/card.js"></script>
-</body>
-</html>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+        
+
+        
+
+        
+
+        

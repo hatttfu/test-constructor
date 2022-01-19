@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="instructions">
+        <div class="headline">Конструктор теста</div>
+    </div>
+    <form method="post">
+        <div class="input-group d-inline-flex flex-column align-items-center mb-3">
+            <p class="info mt-3">Введи имя:</p>
+            <input id="name-input" name="name" type="text" class="form-control" /><p class="info mt-3">Введи пароль:</p>
+            <input id="name-input" type="text" name="password" class="form-control" />
+        </div>
+        <div class="add-button">
+            <button type="submit" name="submit" value="test" class="btn">Далее</button>
+        </div>
+        <div class="add-button mt-3">
+            <button type="submit" name="submit" value="register" class="btn btn-primary">Я здесь впервые</button>
+        </div>
+    </form>
+    <div class="rotating-container mt-5">
+        <img id="rotating" src="../static/img/rotating.jpg" alt="">
+    </div>
+{% endblock %}
+
+
+        
+
+        
+
+        
