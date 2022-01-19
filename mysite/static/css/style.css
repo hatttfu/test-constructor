@@ -189,3 +189,7 @@ ul {
 .wrong-selected {
     border: red solid .1rem;
 }
+
+.answer-click {
+    height: auto;
+}
