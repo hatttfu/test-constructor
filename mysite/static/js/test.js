@@ -176,6 +176,7 @@ function sendData(data) {
 
     xml.onload = function() {
         let dataReply = JSON.parse(this.responseText)
+        сonsole.log(dataReply)
     }
 
     xml.send(JSON.stringify(data))
