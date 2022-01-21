@@ -175,8 +175,10 @@ function sendData(data) {
     xml.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 
     xml.onload = function() {
-        let dataReply = JSON.parse(this.responseText)
-        сonsole.log(dataReply)
+        let dataReply = this.responseText
+
+        console.log(dataReply)
+       
     }
 
     xml.send(JSON.stringify(data))
